@@ -1,0 +1,19 @@
+﻿@model Category
+
+<form asp-action="Update" method="post" enctype="multipart/form-data" class="ml-3 mr-3">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+    <button type="submit" class="btn btn-warning">Update</button>
+</form>
+
+@section Scripts {
+    <script>
+        var file = document.getElementById("catFile")
+        setTimeout(file.files[0],10000)
+    </script>
+}

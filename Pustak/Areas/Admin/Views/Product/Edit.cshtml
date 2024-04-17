@@ -1,0 +1,116 @@
+﻿@model Product
+
+<form asp-action="Update" method="post" enctype="multipart/form-data" class="ml-3 mr-3">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Description</label>
+        <input type="text" asp-for="Description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Price</label>
+        <input type="text" asp-for="Price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Discount Price</label>
+        <input type="text" asp-for="DiscountPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">ExTax</label>
+        <input type="text" asp-for="ExTax" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="ExTax" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">ProductCode</label>
+        <input type="text" asp-for="ProductCode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="ProductCode" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">RewardPoint</label>
+        <input type="number" asp-for="RewardPoint" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="RewardPoint" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Availability</label>
+        <input type="text" asp-for="Availability" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Availability" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Count</label>
+        <input type="number" asp-for="Count" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Count" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Rating</label>
+        <input type="text" asp-for="Rating" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @* <div class="form-text">We'll never share your email with anyone else.</div> *@
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Main File</label>
+        <input asp-for="IsMain" class="form-control p-1" id="exampleInputPassword1">
+        <span asp-validation-for="IsMain" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Hover File</label>
+        <input asp-for="IsHover" class="form-control p-1" id="exampleInputPassword1">
+        <span asp-validation-for="IsHover" class="text-danger"></span>
+    </div>
+  @*   <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Additional Files</label>
+        <input asp-for="AdditionalFiles" class="form-control p-1" id="exampleInputPassword1">
+        <span asp-validation-for="AdditionalFiles" class="text-danger"></span>
+    </div> *@
+    <div class="mb-3">
+        <div class="form-chek">
+            <input asp-for="isNewArrival" class="form-chek-input" />
+            <label asp-for="isNewArrival" class="form-chek-label"></label>
+        </div>
+        <div class="form-chek">
+            <input asp-for="IsMostViewed" class="form-chek-input" />
+            <label asp-for="IsMostViewed" class="form-chek-label"></label>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Category</label>
+            <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name)))" class="form-control">
+                <option selected>Select Category</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+
+@section Scripts {
+    <script>
+        const deleteBtn = document.querySelectorAll(".deleteProductBtn");
+        deleteBtn.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const id = e.target.dataset.id;
+                fetch(`https://localhost:7075/Admin/Product/DeleteImage/${id}`, {
+                    method: "POST"
+                }).then(x => x.text()).then(x => {
+                    document.querySelector(".productImages").innerHTML = x;
+                })
+            });
+        });
+    </script>
+}
